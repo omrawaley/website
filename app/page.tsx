@@ -7,7 +7,7 @@ export default function Page() {
       {/*<div className="mb-8">
         <RGBIcon />
       </div>*/}
-      <h1 className="mb-8 text-2xl font-semibold tracking-tight">
+      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
         Om Rawaley
         <span className="text-muted">
           {" "}
@@ -23,7 +23,7 @@ export default function Page() {
         check out my projects, and read my writing.
       </p>
       <div className="mt-16">
-        <h2 className="mb-4 text-2xl font-bold tracking-tight">
+        <h2 className="mb-4 text-2xl font-bold tracking-tighter">
           Featured Writing
         </h2>
         <BlogPosts />
