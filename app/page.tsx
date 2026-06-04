@@ -7,7 +7,7 @@ export default function Page() {
       {/*<div className="mb-8">
         <RGBIcon />
       </div>*/}
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
+      <h1 className="mb-8 text-2xl font-semibold tracking-tight">
         Om Rawaley
         <span className="text-muted">
           {" "}
