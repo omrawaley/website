@@ -1,0 +1,67 @@
+---
+title: 'RSS is awesome'
+publishedAt: '2026-06-04'
+summary: 'What the heck is RSS?'
+---
+
+<p className="text-sm">(Psst... this is my first post on this site. It might be rough around the edges.)</p>
+
+<img src="https://images.ctfassets.net/lzny33ho1g45/7tzM1W4M2tQoiZ1nU4ZutU/edd3a7571a0c40cfa5692115429e27ec/Group_12552.jpg" alt="rss image" />
+
+If you haven't been living under a rock for the past few decades, you've definitely visited a website where the author (or company) has asked you to subscribe to a newsletter, waitlist, or mailing list. 
+
+All it takes is typing your email into a little box.
+
+Fast forward a couple weeks later, your inbox is littered with ads, promotions, and other junk. Nobody likes that!
+
+## There's a better way
+
+You might be happy to know a that really old technology called RSS (Really Simple Syndication) can easily solve this problem... if site authors actually adopted it.
+
+RSS consists of an XML file, which is periodically updated, that stores the metadata and content of your posts. <a href="https://omrawaley.com/rss">(Check out this site's RSS feed!)</a>
+
+```xml
+<rss version="2.0">
+  <channel>
+    <title>Peter Larker's Website</title>
+    <link>https://google.com</link>
+    <description>This is Peter's RSS feed</description>
+    <item>
+      <title>Tiny Frog Collectibles Launch!</title>
+      <link>
+        https://google.com/tiny-frog-collectibles-launch
+      </link>
+      <description>Check out the new frog collectibles!</description>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
+```
+
+You can use a piece of software known as an RSS feed reader to fetch this XML file and display the contents. There are many types of RSS readers from browser extensions to desktop applications.
+
+All they do is send an HTTP GET request to fetch the XML file from the feed URL, then parse it to extract the data. This simplicity means you can view RSS feeds from virtually any device, including Wi-Fi enabled microcontrollers like the ESP32.
+
+<img src="https://cdn-shop.adafruit.com/970x728/3269-04.jpg" />
+
+## Why isn't this used more?
+
+### Engagement
+
+One reason RSS is more of a niche thing rather than a standard replacement for email newsletters is because it's inherently single-sided as a read-only broadcasting channel. You can view the content an author posts, but the author has no way of knowing that you're viewing it.
+
+The vast majority of businesses need two-way communication with their audiences, not to mention analytics, so email networks are simply the better choice. That being said, many major social media platforms like Reddit and YouTube actually do have RSS feeds, although they are somewhat obscure (getting the RSS feed of a YouTube channel requires you to view the page source, for example).
+
+### Monetization
+
+Monetization is another factor. Due to the push-pull nature of RSS, and the fact it relies on open HTTP protocols, you can't really profit off it unless you incorporate monetization into the reader itself. There's no real return (like advertising revenue) from maintaining an RSS feed, so most businesses choose not to concern themselves with one.
+
+Finally, social media, of course, has led way a much more seamless and quicker way of consuming content online. Instead of having to manually add each individual RSS feed by yourself, you get access to the whole platform's content discovery algorithm and communication capabilities.
+
+## Conclusion
+
+While RSS has some drawbacks, it's a shame it's not as mainstream as email and social media. It truly is a great way of consuming content without noisy notifications or ads, but the open, unmonetizable nature of it has led to businesses adopting social media and email networks instead.
+
+---
+
+One thing I'd like to do this year is write an RSS feed viewer app for Pocketbyte.

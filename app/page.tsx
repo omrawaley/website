@@ -8,11 +8,12 @@ export default function Page() {
         <RGBIcon />
       </div>*/}
       <h1 className="mb-8 text-2xl font-semibold tracking-tight">
+        <span className="text-muted">Hi! I'm </span>
         Om Rawaley
         <span className="text-muted">
-          {" "}
-          is an embedded systems developer. He designs and builds video game
-          consoles, PDAs, and much more.
+          {", "}
+          an embedded systems developer. I design and build video game consoles,
+          PDAs, and much more.
         </span>
       </h1>
       {/*<p className="mb-4 text-lg">
