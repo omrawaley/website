@@ -49,7 +49,7 @@ export default function Footer() {
           </a>
         </li>
       </ul>
-      <p className="text-muted/80 place-self-center">
+      <p className="text-muted place-self-center">
         © {new Date().getFullYear()} Om Rawaley
       </p>
     </footer>

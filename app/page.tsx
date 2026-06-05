@@ -8,7 +8,7 @@ export default function Page() {
         <RGBIcon />
       </div>*/}
       <h1 className="mb-8 text-2xl font-semibold tracking-tight">
-        <span className="text-muted">Hi! I'm </span>
+        <span className="text-muted">Hi, I'm </span>
         Om Rawaley
         <span className="text-muted">
           {", "}
