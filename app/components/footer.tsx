@@ -34,11 +34,11 @@ function RSSIcon() {
 
 export default function Footer() {
   return (
-    <footer className="mt-16 mb-16 flex flex-row justify-between mr-[8px]">
+    <footer className="mt-32 mb-16 flex flex-row justify-between mr-[8px]">
       <ul className="font-sm flex flex-col space-x-0 space-y-2 md:flex-row md:space-x-4 md:space-y-0">
         <li className="place-self-center">
           <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+            className="flex items-center transition-all text-muted-dark"
             rel="noopener noreferrer"
             target="_blank"
             href="/rss"
@@ -49,7 +49,7 @@ export default function Footer() {
           </a>
         </li>
       </ul>
-      <p className="text-muted place-self-center">
+      <p className="text-muted-dark/50 place-self-center">
         © {new Date().getFullYear()} Om Rawaley
       </p>
     </footer>

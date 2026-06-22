@@ -15,7 +15,7 @@ export default function Page() {
         . I build cool hardware and software.
       </p>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid sm:grid-cols-2 gap-6">
         <Box href="https://pocketbyte.co">
           <Image
             src="/images/PocketbyteDevKit.JPG"
