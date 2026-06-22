@@ -1,33 +1,39 @@
 import { BlogPosts } from "app/components/posts";
 import RGBIcon from "./components/RGBIcon";
+import Box from "./components/Box";
+import Image from "next/image";
 
 export default function Page() {
   return (
     <section>
-      {/*<div className="mb-8">
-        <RGBIcon />
-      </div>*/}
-      <h1 className="mb-8 text-2xl font-semibold tracking-tight">
-        <span className="text-muted">Hi, I'm </span>
-        Om Rawaley
-        <span className="text-muted">
-          {", "}
-          an embedded systems developer. I design and build video game consoles,
-          PDAs, and much more.
+      <h1 className="tracking-tight text-9xl">hi</h1>
+      <p className="tracking-tight text-3xl mb-12">
+        My name's{" "}
+        <span className="font-semibold text-4xl bg-gradient-to-l from-[#38bdf8] via-[#fb7185] to-[#84cc16] bg-clip-text text-transparent">
+          Om
         </span>
-      </h1>
-      {/*<p className="mb-4 text-lg">
-        I founded Pocketbyte in 2025 and continue to build there today.
-      </p>*/}
-      <p className="mb-8">
-        Welcome to my corner of the internet. Here, you can learn more about me,
-        check out my projects, and read my writing.
+        . I build cool hardware and software.
       </p>
-      <div className="mt-16">
-        <h2 className="mb-4 text-2xl font-bold tracking-tighter">
-          Featured Writing
-        </h2>
-        <BlogPosts />
+
+      <div className="grid grid-cols-2 gap-6">
+        <Box href="https://pocketbyte.co">
+          <Image
+            src="/images/PocketbyteDevKit.JPG"
+            alt="pocketbyte devkit"
+            width={4284}
+            height={5712}
+            className="object-cover w-full h-auto scale-200"
+          />{" "}
+        </Box>
+        <Box href="https://pocketbyte.co">
+          <Image
+            src="/images/PocketbyteLauncherCloseup.JPG"
+            alt="pocketbyte launcher closeup"
+            width={4284}
+            height={5712}
+            className="object-cover w-full h-auto"
+          />{" "}
+        </Box>
       </div>
     </section>
   );
