@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "lib/utils";
 
 function ArrowIcon() {
@@ -41,7 +43,7 @@ export default function Box({ children, href, className, arrow }: BoxProps) {
       )}
     >
       {children}
-      <div className="absolute top-8 right-8 group-hover:translate-x-4 group-hover:-translate-y-4 transition">
+      <div className="absolute top-8 right-8 group-hover:translate-x-4 group-hover:translate-[-1rem] duration-300 transition">
         {arrow && href && (
           <div className="bg-muted rounded-full opacity-80 drop-shadow-sm shadow-muted-dark">
             <ArrowIcon />

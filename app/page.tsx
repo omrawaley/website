@@ -1,3 +1,5 @@
+"use client";
+
 import { BlogPosts } from "app/components/posts";
 import RGBIcon from "./components/RGBIcon";
 import Box from "./components/Box";
