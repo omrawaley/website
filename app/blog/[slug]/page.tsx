@@ -70,7 +70,7 @@ export default async function Blog({ params }: Props) {
   }
 
   return (
-    <section className="max-w-3xl ml-auto mr-auto">
+    <section className="max-w-3xl md:ml-auto md:mr-auto mt-16 mb-32">
       <script
         type="application/ld+json"
         suppressHydrationWarning

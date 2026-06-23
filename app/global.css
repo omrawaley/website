@@ -82,7 +82,7 @@ html {
 }
 
 .prose code {
-  @apply px-1 py-0.5 rounded-lg;
+  @apply px-1 py-0.5 rounded-2xl;
 }
 
 .prose pre code {
@@ -97,11 +97,11 @@ html {
 
 .prose img {
   /* Don't apply styles to next/image */
-  @apply m-0 rounded-lg;
+  @apply m-0 rounded-2xl;
 }
 
 .prose p {
-  @apply my-4 text-muted-dark;
+  @apply my-4 text-muted-dark tracking-normal;
 }
 
 .prose h1 {
@@ -109,7 +109,7 @@ html {
 }
 
 .prose h2 {
-  @apply text-xl font-normal tracking-tight mt-6 mb-2;
+  @apply text-2xl font-normal tracking-tight mt-6 mb-2;
 }
 
 .prose h3 {

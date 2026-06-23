@@ -54,7 +54,10 @@ export default function Box({ children, href, className, arrow }: BoxProps) {
       )}
       variants={boxVariants}
       whileHover="hovered"
-      initial="initial"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
     >
       {children}
       <motion.div
