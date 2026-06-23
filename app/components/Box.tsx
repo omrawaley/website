@@ -1,3 +1,5 @@
+import { cn } from "lib/utils";
+
 function ArrowIcon() {
   return (
     <svg
@@ -21,20 +23,26 @@ function ArrowIcon() {
 interface BoxProps {
   children: React.ReactNode;
   href?: string;
+  className?: string;
+  arrow?: boolean;
 }
 
-export default function Box({ children, href }: BoxProps) {
+export default function Box({ children, href, className, arrow }: BoxProps) {
   const Wrapper = href ? "a" : "div";
 
   return (
     <Wrapper
       {...(href ? { href } : {})}
       {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={`bg-muted rounded-3xl relative group overflow-hidden ${href && "hover:cursor-pointer"}`}
+      className={cn(
+        "bg-muted rounded-3xl relative group overflow-hidden",
+        className,
+        href && "hover:cursor-pointer",
+      )}
     >
       {children}
       <div className="absolute top-8 right-8 group-hover:translate-x-4 group-hover:-translate-y-4 transition">
-        {href && (
+        {arrow && href && (
           <div className="bg-muted rounded-full opacity-80 drop-shadow-sm shadow-muted-dark">
             <ArrowIcon />
           </div>

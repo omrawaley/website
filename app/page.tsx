@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Page() {
   return (
-    <section>
+    <section className="mt-16 mb-32">
       <h1 className="tracking-tight text-9xl">hi</h1>
       <p className="tracking-tight text-3xl mb-12">
         My name's{" "}
@@ -15,24 +15,60 @@ export default function Page() {
         . I build cool hardware and software.
       </p>
 
-      <div className="grid sm:grid-cols-2 gap-6">
-        <Box href="https://pocketbyte.co">
+      <div className="grid sm:grid-cols-4 gap-6">
+        <Box href="https://pocketbyte.co" className="col-span-2" arrow={true}>
           <Image
             src="/images/PocketbyteDevKit.JPG"
             alt="pocketbyte devkit"
             width={4284}
             height={5712}
             className="object-cover w-full h-auto scale-200"
-          />{" "}
+          />
         </Box>
-        <Box href="https://pocketbyte.co">
+        <Box href="https://pocketbyte.co" className="col-span-2" arrow={true}>
           <Image
             src="/images/PocketbyteLauncherCloseup.JPG"
             alt="pocketbyte launcher closeup"
             width={4284}
             height={5712}
             className="object-cover w-full h-auto"
-          />{" "}
+          />
+        </Box>
+
+        <Box className="grid place-items-center p-10">
+          <h2 className="text-3xl text-muted-dark tracking-tight">
+            Send me a message! ————→
+          </h2>
+        </Box>
+        <Box href="mailto:omrawaley@icloud.com" className="bg-blue-500">
+          <Image
+            src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/email-envelope-white-icon.png"
+            alt="github"
+            width={500}
+            height={500}
+            className="object-cover w-full h-auto p-12"
+          />
+        </Box>
+        <Box href="https://github.com/omrawaley" className="bg-black">
+          <Image
+            src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-white-icon.png"
+            alt="github"
+            width={500}
+            height={500}
+            className="object-cover w-full h-auto p-12"
+          />
+        </Box>
+        <Box
+          href="https://www.linkedin.com/in/om-rawaley-a575853a7/"
+          className="bg-[#007fba]"
+        >
+          <Image
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/1280px-LinkedIn_icon.svg.png"
+            alt="github"
+            width={500}
+            height={500}
+            className="object-cover w-full h-auto p-12"
+          />
         </Box>
       </div>
     </section>
