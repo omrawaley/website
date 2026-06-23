@@ -35,7 +35,7 @@ export default function Box({ children, href, className, arrow }: BoxProps) {
       {...(href ? { href } : {})}
       {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={cn(
-        "bg-muted rounded-3xl relative group overflow-hidden",
+        "bg-muted rounded-3xl relative group overflow-hidden drop-shadow-lg",
         className,
         href && "hover:cursor-pointer",
       )}
