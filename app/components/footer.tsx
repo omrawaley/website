@@ -27,7 +27,7 @@ export default function Footer() {
             href="/rss"
           >
             {/*<ArrowIcon />*/}
-            <RSSIcon />
+            {/* <RSSIcon /> */}
             <p className="ml-2 h-7 text-xl">rss</p>
           </a>
         </li>
