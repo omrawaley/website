@@ -9,19 +9,6 @@
   --color-fg: #0a0a0a;
   --color-muted: #f3f3f3;
   --color-muted-dark: #6b7280;
-
-  --animate-arrow: arrow-move 0.1s;
-
-  @keyframes arrow-move {
-    0% {
-      top: 8;
-      right: 8;
-    }
-    100% {
-      top: 4;
-      right: 4;
-    }
-  }
 }
 
 ::selection {

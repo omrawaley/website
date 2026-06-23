@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "lib/utils";
+import { motion } from "framer-motion";
 
 function ArrowIcon() {
   return (
@@ -22,6 +23,16 @@ function ArrowIcon() {
   );
 }
 
+const boxVariants = {
+  initial: {},
+  hovered: {},
+};
+
+const arrowVariants = {
+  initial: { y: 0, x: 0 },
+  hovered: { y: -10, x: 10 },
+};
+
 interface BoxProps {
   children: React.ReactNode;
   href?: string;
@@ -30,7 +41,7 @@ interface BoxProps {
 }
 
 export default function Box({ children, href, className, arrow }: BoxProps) {
-  const Wrapper = href ? "a" : "div";
+  const Wrapper = href ? motion.a : motion.div;
 
   return (
     <Wrapper
@@ -41,15 +52,24 @@ export default function Box({ children, href, className, arrow }: BoxProps) {
         className,
         href && "hover:cursor-pointer",
       )}
+      variants={boxVariants}
+      whileHover="hovered"
+      initial="initial"
     >
       {children}
-      <div className="absolute top-8 right-8 group-hover:translate-x-4 group-hover:translate-[-1rem] duration-300 transition">
+      <motion.div
+        className="absolute top-8 right-8"
+        variants={{ initial: { opacity: 0.6 }, hovered: { opacity: 1 } }}
+      >
         {arrow && href && (
-          <div className="bg-muted rounded-full opacity-80 drop-shadow-sm shadow-muted-dark">
+          <motion.div
+            className="bg-muted rounded-full opacity-80 drop-shadow-sm shadow-muted-dark"
+            variants={arrowVariants}
+          >
             <ArrowIcon />
-          </div>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     </Wrapper>
   );
 }
