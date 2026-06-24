@@ -60,6 +60,19 @@ export default function Page() {
             className="object-cover w-full h-auto"
           />
         </Box>
+        <Box
+          href="https://github.com/omrawaley/gameboy-emulator"
+          className="col-span-4"
+          arrow={true}
+        >
+          <Image
+            src="/images/GameBoyEmulator.png"
+            alt="pocketbyte launcher closeup"
+            width={4284}
+            height={5712}
+            className="object-cover w-full h-auto"
+          />
+        </Box>
 
         <Box className="col-span-2 p-10">
           <p className="text-muted-dark text-large text-lg">
