@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 import { baseUrl } from "app/sitemap";
+import BackArrow from "app/components/BackArrow";
 
 type Params = Promise<{
   slug: string;
@@ -93,9 +94,12 @@ export default async function Blog({ params }: Props) {
           }),
         }}
       />
-      <h1 className="title font-normal text-2xl tracking-tight">
-        {post.metadata.title}
-      </h1>
+      <div className="flex flex-row place-items-center gap-4">
+        <BackArrow href="/blog" />
+        <h1 className="title font-normal text-3xl tracking-tight">
+          {post.metadata.title}
+        </h1>
+      </div>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
         <p className="text-xl text-muted-dark">
           {formatDate(post.metadata.publishedAt)}
