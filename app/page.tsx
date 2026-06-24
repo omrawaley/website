@@ -106,7 +106,7 @@ export default function Page() {
         <div className="grid grid-cols-2 col-span-2 gap-6">
           <Box
             href="mailto:omrawaley@icloud.com"
-            className="bg-blue-500"
+            className="bg-sky-400"
             arrow={true}
           >
             <Image
