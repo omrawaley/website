@@ -62,7 +62,7 @@ export default function Page() {
         </Box>
         <Box
           href="https://github.com/omrawaley/gameboy-emulator"
-          className="col-span-4"
+          className="col-span-2 md:col-span-4"
           arrow={true}
         >
           <Image
