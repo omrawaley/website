@@ -6,6 +6,7 @@ import Box from "./components/Box";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 function RSSIcon() {
   return (
@@ -23,6 +24,14 @@ function RSSIcon() {
     </svg>
   );
 }
+
+// function SectionHeader({ title }) {
+//   return (
+//     <h2 className="text-4xl col-span-2 md:col-span-4 text-nowrap mt-48 mb-8 tracking-tight text-center">
+//       {title}
+//     </h2>
+//   );
+// }
 
 export default function Page() {
   return (
@@ -67,13 +76,27 @@ export default function Page() {
         >
           <Image
             src="/images/GameBoyEmulator.png"
-            alt="pocketbyte launcher closeup"
+            alt="gameboy emulator (C++)"
+            width={4284}
+            height={5712}
+            className="object-cover w-full h-auto"
+          />
+        </Box>
+        <Box
+          href="https://github.com/omrawaley/chip8-go"
+          className="col-span-2 md:col-span-4"
+          arrow={true}
+        >
+          <Image
+            src="/images/chip8-go.png"
+            alt="chip8-go (Go)"
             width={4284}
             height={5712}
             className="object-cover w-full h-auto"
           />
         </Box>
 
+        {/* <SectionHeader title="about me" /> */}
         <Box className="col-span-2 p-10">
           <p className="text-muted-dark text-large text-lg">
             I'm super passionate about embedded systems development with over
@@ -103,6 +126,12 @@ export default function Page() {
           />
         </Box>
 
+        {/* <SectionHeader title="tech i use" /> */}
+        {/* <Box className="col-span-2 md:col-span-4 p-12 flex flex-row gap-4">
+          <
+        </Box> */}
+
+        {/* <SectionHeader title="contact me" /> */}
         <div className="grid grid-cols-2 col-span-2 gap-6">
           <Box
             href="mailto:omrawaley@icloud.com"
