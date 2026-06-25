@@ -101,23 +101,23 @@ html {
 }
 
 .prose p {
-  @apply my-4 text-muted-dark tracking-normal;
+  @apply my-8 text-muted-dark tracking-normal;
 }
 
 .prose h1 {
-  @apply text-4xl font-normal tracking-tight mt-6 mb-2;
+  @apply text-4xl font-normal tracking-tight mt-10 mb-6;
 }
 
 .prose h2 {
-  @apply text-2xl font-normal tracking-tight mt-6 mb-2;
+  @apply text-2xl font-normal tracking-tight mt-10 mb-6;
 }
 
 .prose h3 {
-  @apply text-xl font-normal tracking-tight mt-6 mb-2;
+  @apply text-xl font-normal tracking-tight mt-10 mb-6;
 }
 
 .prose h4 {
-  @apply text-lg font-normal tracking-tight mt-6 mb-2;
+  @apply text-lg font-normal tracking-tight mt-10 mb-6;
 }
 
 .prose strong {
