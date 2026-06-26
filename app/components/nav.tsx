@@ -4,15 +4,15 @@ const navItems = {
   "/": {
     name: "home",
   },
-  "/about": {
-    name: "about",
-  },
+  // "/about": {
+  //   name: "about",
+  // },
   "/blog": {
     name: "blog",
   },
-  "/contact": {
-    name: "contact",
-  },
+  // "/contact": {
+  //   name: "contact",
+  // },
 };
 
 export function Navbar() {
@@ -29,7 +29,7 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className="text-muted-dark flex align-middle relative py-1 px-2 m-1"
+                  className="text-muted-dark flex align-middle relative py-1 px-2 m-1 text-xl"
                 >
                   {name}
                 </Link>

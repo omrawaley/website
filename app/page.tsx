@@ -38,7 +38,7 @@ function RSSIcon() {
 export default function Page() {
   return (
     <motion.section
-      className="mt-16 mb-32"
+      className="mt-0 mb-32"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -140,12 +140,12 @@ export default function Page() {
           </Box>
         </div>
 
-        <Box className="grid place-items-center p-10 col-span-2 row-span-2">
+        <Box className="grid place-items-center p-12 col-span-2 row-span-2">
           <Link
             className="text-2xl md:text-4xl text-muted-dark tracking-tight"
             href="/blog"
           >
-            Read my <span className="underline">writing</span>!
+            Read my <span className="underline text-blue-700">blog</span>!
           </Link>
         </Box>
       </div>

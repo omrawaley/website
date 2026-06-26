@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <section className="mt-16 mb-32">
+    <section className="mt-0 mb-32">
       <div className="flex flex-row gap-4 items-center">
         <BackArrow href="/" />
         <h1 className="text-4xl tracking-tighter">Blog</h1>
