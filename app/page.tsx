@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import BoxImage from "./components/BoxImage";
 
 function RSSIcon() {
   return (
@@ -51,50 +52,31 @@ export default function Page() {
       </p>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-        <Box href="https://pocketbyte.co" className="col-span-2" arrow={true}>
-          <Image
-            src="/images/PocketbyteDevKit.JPG"
-            alt="pocketbyte devkit"
-            width={4284}
-            height={5712}
-            className="object-cover w-full h-auto scale-200"
-          />
-        </Box>
-        <Box href="https://pocketbyte.co" className="col-span-2" arrow={true}>
-          <Image
-            src="/images/PocketbyteLauncherCloseup.JPG"
-            alt="pocketbyte launcher closeup"
-            width={4284}
-            height={5712}
-            className="object-cover w-full h-auto"
-          />
-        </Box>
-        <Box
+        <BoxImage
+          alt="pocketbyte devkit"
+          href="https://pocketbyte.co"
+          src="/images/PocketbyteDevKit.JPG"
+          className="col-span-2"
+          imageClassName="scale-200"
+        />
+        <BoxImage
+          alt="pocketbyte launcher"
+          href="https://pocketbyte.co"
+          src="/images/PocketbyteLauncherCloseup.JPG"
+          className="col-span-2"
+        />
+        <BoxImage
+          alt="gameboy emulator (C++)"
           href="https://github.com/omrawaley/gameboy-emulator"
+          src="/images/GameBoyEmulator.png"
           className="col-span-2 md:col-span-4"
-          arrow={true}
-        >
-          <Image
-            src="/images/GameBoyEmulator.png"
-            alt="gameboy emulator (C++)"
-            width={4284}
-            height={5712}
-            className="object-cover w-full h-auto"
-          />
-        </Box>
-        <Box
+        />
+        <BoxImage
+          alt="chip8-go (Go)"
           href="https://github.com/omrawaley/chip8-go"
+          src="/images/chip8-go.png"
           className="col-span-2 md:col-span-4"
-          arrow={true}
-        >
-          <Image
-            src="/images/chip8-go.png"
-            alt="chip8-go (Go)"
-            width={4284}
-            height={5712}
-            className="object-cover w-full h-auto"
-          />
-        </Box>
+        />
 
         {/* <SectionHeader title="about me" /> */}
         <Box className="col-span-2 p-10">
@@ -112,19 +94,13 @@ export default function Page() {
             where I continue to build today.
           </p>
         </Box>
-        <Box
+        <BoxImage
+          alt="pocketbyte"
           href="https://pocketbyte.co"
+          src="/images/PocketByteWordmarkGear.png"
           className="bg-[#fab81e] col-span-2 grid place-items-center"
-          arrow={true}
-        >
-          <Image
-            src="/images/PocketByteWordmarkGear.png"
-            alt="pocketbyte"
-            width={500}
-            height={500}
-            className="object-cover w-full h-auto p-12"
-          />
-        </Box>
+          imageClassName="p-12"
+        />
 
         {/* <SectionHeader title="tech i use" /> */}
         {/* <Box className="col-span-2 md:col-span-4 p-12 flex flex-row gap-4">
@@ -133,45 +109,27 @@ export default function Page() {
 
         {/* <SectionHeader title="contact me" /> */}
         <div className="grid grid-cols-2 col-span-2 gap-6">
-          <Box
+          <BoxImage
+            alt="email"
             href="mailto:omrawaley@icloud.com"
+            src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/email-envelope-white-icon.png"
             className="bg-sky-400"
-            arrow={true}
-          >
-            <Image
-              src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/email-envelope-white-icon.png"
-              alt="email"
-              width={500}
-              height={500}
-              className="object-cover w-full h-auto p-12"
-            />
-          </Box>
-          <Box
+            imageClassName="p-12"
+          />
+          <BoxImage
+            alt="github"
             href="https://github.com/omrawaley"
+            src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-white-icon.png"
             className="bg-black"
-            arrow={true}
-          >
-            <Image
-              src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-white-icon.png"
-              alt="github"
-              width={500}
-              height={500}
-              className="object-cover w-full h-auto p-12"
-            />
-          </Box>
-          <Box
+            imageClassName="p-12"
+          />
+          <BoxImage
+            alt="linkedin"
             href="https://www.linkedin.com/in/om-rawaley-a575853a7/"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/1280px-LinkedIn_icon.svg.png"
             className="bg-[#007fba]"
-            arrow={true}
-          >
-            <Image
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/1280px-LinkedIn_icon.svg.png"
-              alt="github"
-              width={500}
-              height={500}
-              className="object-cover w-full h-auto p-12"
-            />
-          </Box>
+            imageClassName="p-12"
+          />
           <Box href="/rss" className="bg-[#f26522]" arrow={true}>
             <div className="object-cover w-full h-auto p-6 md:p-12">
               <RSSIcon />
