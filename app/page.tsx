@@ -8,6 +8,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import BoxImage from "./components/BoxImage";
+import TechStack from "./components/TechStack";
 
 function RSSIcon() {
   return (
@@ -106,6 +107,8 @@ export default function Page() {
         {/* <Box className="col-span-2 md:col-span-4 p-12 flex flex-row gap-4">
           <
         </Box> */}
+
+        <TechStack />
 
         {/* <SectionHeader title="contact me" /> */}
         <div className="grid grid-cols-2 col-span-2 gap-6">
