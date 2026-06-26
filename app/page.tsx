@@ -1,12 +1,8 @@
 "use client";
 
-import { BlogPosts } from "app/components/posts";
-import RGBIcon from "./components/RGBIcon";
 import Box from "./components/Box";
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 import BoxImage from "./components/BoxImage";
 import TechStack from "./components/TechStack";
 
@@ -26,14 +22,6 @@ function RSSIcon() {
     </svg>
   );
 }
-
-// function SectionHeader({ title }) {
-//   return (
-//     <h2 className="text-4xl col-span-2 md:col-span-4 text-nowrap mt-48 mb-8 tracking-tight text-center">
-//       {title}
-//     </h2>
-//   );
-// }
 
 export default function Page() {
   return (
@@ -79,7 +67,6 @@ export default function Page() {
           className="col-span-2 md:col-span-4"
         />
 
-        {/* <SectionHeader title="about me" /> */}
         <Box className="col-span-2 p-10">
           <p className="text-muted-dark text-large text-lg">
             I'm super passionate about embedded systems development with over
@@ -103,14 +90,8 @@ export default function Page() {
           imageClassName="p-12"
         />
 
-        {/* <SectionHeader title="tech i use" /> */}
-        {/* <Box className="col-span-2 md:col-span-4 p-12 flex flex-row gap-4">
-          <
-        </Box> */}
-
         <TechStack />
 
-        {/* <SectionHeader title="contact me" /> */}
         <div className="grid grid-cols-2 col-span-2 gap-6">
           <BoxImage
             alt="email"
