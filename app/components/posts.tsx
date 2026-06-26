@@ -21,7 +21,7 @@ export function BlogPosts() {
             className="flex flex-col space-y-1 mb-8 md:mb-4"
             href={`/blog/${post.slug}`}
           >
-            <div className="w-full max-w-xl flex flex-col justify-between md:flex-row space-x-0 md:space-x-2">
+            <div className="w-full flex flex-col justify-between md:flex-row space-x-0 md:space-x-2">
               <p className="text-2xl">{post.metadata.title}</p>
               <p className="text-2xl text-muted-dark tabular-nums">
                 {formatDate(post.metadata.publishedAt, false)}

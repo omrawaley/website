@@ -14,7 +14,7 @@ export default function Page() {
         <BackArrow href="/" />
         <h1 className="text-4xl tracking-tighter">Blog</h1>
       </div>
-      <div className="max-w-2xl place-self-center ml-auto mr-auto">
+      <div className="place-self-center ml-auto mr-auto">
         <div className="p-16">
           <BlogPosts />
         </div>

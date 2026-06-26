@@ -1,0 +1,103 @@
+---
+title: "Go's Amazing Developer Experience"
+publishedAt: "2026-06-26"
+summary: "Why Go feels great to write."
+---
+
+<img src="https://go.dev/blog/gopher/header.jpg" alt="go mascot" />
+
+I've been tinkering with the [Go programming language](https://go.dev/) these past few days and made a simple [TUI CHIP-8 emulator](https://github.com/omrawaley/chip8-go).
+
+As someone who usually uses lower-level languages like C, I was pleasantly surprised by how nice it is to work with.
+
+Here is a list of some things I like about Go.
+
+## Declaration syntax
+
+To declare a variable in go, you add the type last:
+
+```go
+var popcornCount uint
+```
+
+So, if you want to declare a `struct`:
+
+```go
+type Bag struct {
+    popcornCount uint
+    hasButter    bool
+}
+```
+
+Compared to languages like C, where you add the type first:
+
+```c
+unsigned int popcornCount;
+```
+
+or Rust where you use a colon:
+
+```rust
+let popcornCount: uint
+```
+
+Go's implementation feels exceptionally simple, minimalistic, and productive.
+
+## No enums
+
+Go doesn't have `enum`s like C and Rust. Instead, you define items as constants and use the `iota` keyword to sequentially increase the value by one:
+
+```go
+const (
+    COLOR_RED = iota
+    COLOR_WHITE
+    COLOR_BLUE
+)
+```
+
+This makes perfect sense because a lot of languages just implement `enum`s as constants, such as in C.
+
+While this doesn't seem very game-changing, it does feel nice knowing that the language is focused and doesn't have duplicate features.
+
+Did you know that in C++, `struct` and `class` are virtually the same thing!
+
+## Error handling
+
+Go's error handling is top notch. The language has a built-in `error` type, so you can return errors from a function like this:
+
+```
+func getPopcorn(amount uint, butter bool) (string, error) {
+    if butter && amount > 300 {
+        return "", fmt.Errorf("not enough buttered popcorn")
+    }
+
+    if butter {
+        return "Got buttered popcorn!", nil
+    } else {
+        return "Got popcorn!", nil
+    }
+}
+```
+
+You can then unwrap errors like this:
+
+```
+if s, err := getPopcorn(301, true); err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(s)
+}
+
+```
+
+It's incredibly idiomatic and convenient compared to using `goto`s in C.
+
+Or maybe C just has bad built-in error handling?
+
+---
+
+So yeah, these are a few things off the top of my head.
+
+I really do like how minimalistic and human-friendly Go is, especially compared to other languages like C. While comparing Go to C is like comparing apples to oranges, a part of me wonders how incredible it would be to have a language that performs like C while having the developer experience of Go.
+
+That's all for this article. I might add a few more items in the future but, for now, I'm digging deeper into Rust 🦀

@@ -82,7 +82,11 @@ html {
 }
 
 .prose code {
-  @apply px-1 py-0.5 rounded-2xl;
+  @apply px-1 py-0.5 rounded-md;
+}
+
+.prose :not(pre) > code {
+  @apply bg-muted-dark;
 }
 
 .prose pre code {
@@ -97,7 +101,7 @@ html {
 
 .prose img {
   /* Don't apply styles to next/image */
-  @apply m-0 rounded-2xl;
+  @apply m-0 rounded-2xl ml-auto mr-auto;
 }
 
 .prose p {
