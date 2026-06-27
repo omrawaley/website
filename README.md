@@ -15,7 +15,7 @@ If you want to run this locally for whatever reason, follow these steps:
 1. Clone the repository
 
 ```
-git clone https://github.com/omrawaley/website
+git clone https://github.com/omrawaley/website.git
 ```
 
 2. Install dependencies
