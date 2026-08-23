@@ -61,6 +61,12 @@ export default function Page() {
           className="col-span-2 md:col-span-4"
         />
         <BoxImage
+          alt="CrabNES (Rust)"
+          href="https://github.com/omrawaley/crab-nes"
+          src="/images/CrabNES.png"
+          className="col-span-2 md:col-span-4"
+        />
+        <BoxImage
           alt="chip8-go (Go)"
           href="https://github.com/omrawaley/chip8-go"
           src="/images/chip8-go.png"
