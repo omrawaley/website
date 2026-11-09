@@ -97,7 +97,7 @@ export default function Page() {
         />
 
         <BoxImage
-          alt="pocketbyte"
+          alt="hack club"
           href="https://hackclub.com"
           src="https://assets.hackclub.com/flag-orpheus-top.svg"
           className="bg-[#ec3750] col-span-2 grid place-items-center"
