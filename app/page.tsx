@@ -96,6 +96,26 @@ export default function Page() {
           imageClassName="p-12"
         />
 
+        <BoxImage
+          alt="pocketbyte"
+          href="https://hackclub.com"
+          src="https://assets.hackclub.com/flag-orpheus-top.svg"
+          className="bg-[#ec3750] col-span-2 grid place-items-center"
+          imageClassName="p-12"
+        />
+        <Box className="col-span-2 p-10">
+          <p className="text-muted-dark text-large text-lg">
+            Currently, I'm working as a project reviewer for the{" "}
+            <a href="https://pixl.hackclub.com/" target="blank">
+              PIXL ↗
+            </a>{" "}
+            YSWS program in my spare time.
+            <br />
+            <br />
+            So far, I've reviewed 50+ hardware and software projects.
+          </p>
+        </Box>
+
         <TechStack />
 
         <div className="grid grid-cols-2 col-span-2 gap-6">
