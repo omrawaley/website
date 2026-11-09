@@ -12,6 +12,44 @@ So when I discovered hobbyists like me are able to go one level deeper, designin
 
 ## Tiny Tapeout
 
-Typically, manufacturing ASICS (and really any kind of semiconductor chip) can cost hundreds of thousands of dollers.
+Typically, manufacturing ASICS (and really any kind of semiconductor chip) can cost hundreds of thousands of dollars.
 
-[Tiny Tapeout](https://tinytapeout.com) is an educational project that gives hobbyist developers access to this art by pooling together hundreds of peoples' money to get all of their designs on one unified chip.
+[Tiny Tapeout](https://tinytapeout.com) is an educational project that gives hobbyist developers access to this art by pooling together hundreds of peoples' money to get all of their designs on one unified chip. So, the manufacturing cost is split amongst everyone, each person paying their small share.
+
+## Hack Club ASIC
+
+I found out about this platform through Hack Club's new [ASIC](https://asic.hackclub.com) program, which aims to create a Tiny Tapeout chip designed entirely by teens.
+
+And thus began my descent into the realm of RTL design.
+
+## Beginning and Limitations
+
+Before I started my design, or thought about what I wanted to make, I first had to research the restrictions.
+
+A 1x1 Tiny Tapeout tile on the HC design can fit roughly 1000 logic gates.
+
+For context, if you use the tile entirely as memory, you can only fit ~320 D flip-flops, or ~40 bytes of memory.
+
+Yikes! Not a lot to work with.
+
+However, despite that, I had seen many incredible projects like Rick Astley's *Never Going to Give You Up* music video (by bitluni), an audio decoder and player, and even a tiny 8-bit RISC-V CPU.
+
+These amazing projects almost seemed to defy all limits, which gave me hope that the platform was more capable than the specifications made it seem.
+
+## Verilog and HDLs
+
+Before starting a project, I digged into the technologies used to design an ASIC and came to the conclusion that the best, and most industry-standard method, involves using a Hardware Description Language.
+
+A Hardware Description Language is a bit like "coding hardware" in the sense that the "code" describes how the circuit is connected.
+
+In other words, you are not writing a program that is read, decoded, and executed by a CPU; you are creating (or, rather, "describing") the physical circuit itself, including every logic gate and bus.
+
+Unlike "normal" code, which is sequential, HDL code "runs" in parallel, because it describes an entire circuit at once.
+
+Interestingly enough, Verilog (and its younger brother, SystemVerilog) seemed to be the most popular option among both hobbyists as well as industry professionals.
+
+As someone who sometimes struggles to choose between different frameworks (especially in web development...), I really appreciated how simple the decision was.
+
+## Pong
+
+I chose to make Pong because it is a project that I had created 
