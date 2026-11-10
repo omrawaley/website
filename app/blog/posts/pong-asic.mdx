@@ -14,6 +14,8 @@ So when I discovered hobbyists like me are able to go one level deeper, designin
 
 Typically, manufacturing ASICS (and really any kind of semiconductor chip) can cost hundreds of thousands of dollars.
 
+<img src="/images/tt02_board_top.jpeg"></img>
+
 [Tiny Tapeout](https://tinytapeout.com) is an educational project that gives hobbyist developers access to this art by pooling together hundreds of peoples' money to get all of their designs on one unified chip. So, the manufacturing cost is split amongst everyone, each person paying their small share.
 
 ## Hack Club ASIC
@@ -32,7 +34,7 @@ For context, if you use the tile entirely as memory, you can only fit ~320 D fli
 
 Yikes! Not a lot to work with.
 
-However, despite that, I had seen many incredible projects like Rick Astley's *Never Going to Give You Up* music video (by bitluni), an audio decoder and player, and even a tiny 8-bit RISC-V CPU.
+However, despite that, I had seen many incredible projects like Rick Astley's _Never Going to Give You Up_ music video (by bitluni), an audio decoder and player, and even a tiny 8-bit RISC-V CPU.
 
 These amazing projects almost seemed to defy all limits, which gave me hope that the platform was more capable than the specifications made it seem.
 
@@ -44,12 +46,80 @@ A Hardware Description Language is a bit like "coding hardware" in the sense tha
 
 In other words, you are not writing a program that is read, decoded, and executed by a CPU; you are creating (or, rather, "describing") the physical circuit itself, including every logic gate and bus.
 
-Unlike "normal" code, which is sequential, HDL code "runs" in parallel, because it describes an entire circuit at once.
+Here is a snippet of code from `ticker.v`:
+
+```
+module ticker#(
+    parameter COUNT_MAX = 200000
+) (
+    input wire clk,
+    input wire rst_n,
+    output wire tick
+);
+
+    reg [17:0] count;
+
+    assign tick = (count >= COUNT_MAX) ? 1 : 0;
+
+    always @(posedge clk) begin
+        if (~rst_n) begin
+            count <= 0;
+        end else if (count >= COUNT_MAX) begin
+            count <= 0;
+        end else begin
+            count <= count + 1;
+        end
+    end
+
+endmodule
+
+```
+
+An 18-bit register which functions like a counter is created, counting all the way to `COUNT_MAX`.
+
+It resembles "normal" code, especially with its C-like syntax, but underneath the surface, is is actually describing a circuit itself, where `tick` is really a wire that toggles between `0` and `1`.
+
+Unlike traditional code, which is sequential, HDL code "runs" in parallel, because it describes an entire circuit at once.
+
+---
 
 Interestingly enough, Verilog (and its younger brother, SystemVerilog) seemed to be the most popular option among both hobbyists as well as industry professionals.
 
 As someone who sometimes struggles to choose between different frameworks (especially in web development...), I really appreciated how simple the decision was.
 
+### Resources
+
+I did have some prior knowledge of Verilog and other HDLs, but that was largely from my previous fascination by FPGAs and the [Analogue Pocket](https://analogue.co). I never actually got around to learning it until now.
+
+Learning Verilog from scratch wasn't actually all that bad. In fact, it only took me a week to get comfortable with it.
+
+There were two main resources I used:
+
+- [**_HDLBits_**: a fantastic collection of circuit design exercises for practicing digital hardware design using Verilog](https://hdlbits.01xz.net/wiki/Main_Page)
+- [**_ChipVerify_**: a great online library of educational content related to RTL design, digital circuits, and HDLs](https://chipverify.com/)
+
+Apart from that, I also looked at Verilog code other people had written and published on GitHub to get a better sense of the practical architecture and design practices.
+
 ## Pong
 
-I chose to make Pong because it is a project that I had created 
+Time for the fun part: the actual project idea!
+
+I chose to make Pong because it is a project that I have created many times on various different platforms: desktop, web, Arduboy, and even [Pocketbyte](https://pocketbyte.co)!
+
+<img src="/images/MoonPongGameplay.png"></img>
+
+From this experience, I have learned a lot about designing clean architecture, especially in regards to Pong, which has many repeated elements. For example, leveraging tables in Lua for modular logic, or a double-buffering engine on embedded systems.
+
+Rather than designing something completely from scratch for my ASIC, I wanted to implement something I already knew how to do in software and see how the RTL design differences stack up.
+
+So, I decided to make Pong!
+
+How hard could it be?
+
+## VGA
+
+In my embedded systems work, when it comes to graphics, I've mostly only worked with I2C and SPI displays. (Besides dabbling with HDMI video on a few Raspberry Pi handhelds...)
+
+As it turns out, the Tiny Tapeout carrier board has a module port that can accept the [Tiny VGA PMOD](https://github.com/mole99/tiny-vga), which allows the ASIC to transfer live VGA signals.
+
+### Procedural Rendering
