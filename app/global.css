@@ -129,7 +129,7 @@ html {
 }
 
 .prose ul {
-  @apply list-disc pl-6;
+  @apply list-disc pl-6 text-muted-dark;
 }
 
 .prose ol {
@@ -138,6 +138,14 @@ html {
 
 .prose hr {
   @apply border-muted my-8;
+}
+
+.prose figcaption {
+  @apply text-center text-muted-dark text-sm -mt-4;
+}
+
+.prose figcaption a {
+  @apply text-blue-700/50;
 }
 
 .prose > :first-child {
