@@ -1,6 +1,6 @@
 ---
 title: "Designing an ASIC to Play Pong"
-publishedAt: "2026-11-08"
+publishedAt: "2026-11-15"
 summary: "Pong in 926 logic gate cells."
 ---
 
@@ -10,9 +10,33 @@ I've worked extensively on low-level systems, like writing [retro emulators](htt
 
 So when I discovered hobbyists like me are able to go one level deeper, designing the actual silicon itself, I was super eager to see what I could build.
 
+## What is an ASIC?
+
+<BlogImage
+  src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Network_traffic_processing_ASIC_inside_an_Ethernet_switch.jpg/500px-Network_traffic_processing_ASIC_inside_an_Ethernet_switch.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail"
+  alt="ASIC"
+>
+  [A packet processing ASIC inside an Ethernet
+  switch](https://en.wikipedia.org/wiki/Application-specific_integrated_circuit#/media/File:Network_traffic_processing_ASIC_inside_an_Ethernet_switch.jpg)
+</BlogImage>
+
+An ASIC (Application-Specific Integrated Circuit) is a microchip built for one specific purpose (and typically for a single customer).
+
+Unlike a CPU, which decodes and executes software instructions (binary code), an ASIC has no operating system. All of the logic gates are hard-wired internally to perform a specific, repeated task.
+
+As such, ASICs can be incredibly power efficient, more performant, and much smaller.
+
+This also means that you can test ASIC designs on real hardware using FPGAs, as you can reprogram how their logic gates are connected internally.
+
+Currently, they're used for things like:
+
+- Bitcoin miners, since they can run hashing algorithms much more efficiently than CPUs and GPUs
+- Consumer electronics, for specialized tasks like image stabilization and battery management
+- Telecommunications, for high-speed packet forwarding
+
 ## Tiny Tapeout
 
-Typically, manufacturing ASICS (and really any kind of semiconductor chip) can cost hundreds of thousands of dollars.
+Typically, manufacturing ASICs (and really any kind of semiconductor chip) can cost hundreds of thousands of dollars.
 
 <img src="/images/tt02_board_top.jpeg"></img>
 
@@ -20,7 +44,7 @@ Typically, manufacturing ASICS (and really any kind of semiconductor chip) can c
 
 ## Hack Club ASIC
 
-I found out about this platform through Hack Club's new [ASIC](https://asic.hackclub.com) program, which aims to create a Tiny Tapeout chip designed entirely by teens.
+A few weeks ago, I found out about this platform through Hack Club's new [ASIC](https://asic.hackclub.com) program, which aims to create a Tiny Tapeout chip designed entirely by teens.
 
 And thus began my descent into the realm of RTL design.
 
@@ -38,9 +62,13 @@ However, despite that, I had seen many incredible projects like Rick Astley's _N
 
 These amazing projects almost seemed to defy all limits, which gave me hope that the platform was more capable than the specifications made it seem.
 
+---
+
+(Psst... I actually ended up only using 46% of the available space 😅. It's safe to say that with optimization, almost anything is possible!)
+
 ## Verilog and HDLs
 
-Before starting a project, I digged into the technologies used to design an ASIC and came to the conclusion that the best, and most industry-standard method, involves using a Hardware Description Language.
+Before starting a project, I dug into the technologies used to design an ASIC and came to the conclusion that the best, and most industry-standard method, involves using a Hardware Description Language.
 
 A Hardware Description Language is a bit like "coding hardware" in the sense that the "code" describes how the circuit is connected.
 
@@ -75,19 +103,19 @@ endmodule
 
 ```
 
-An 18-bit register which functions like a counter is created, counting all the way to `COUNT_MAX`.
+An 18-bit register `count`, which functions like a counter, is created. It counts all the way to `COUNT_MAX`.
 
-It resembles "normal" code, especially with its C-like syntax, but underneath the surface, is is actually describing a circuit itself, where `tick` is really a wire that toggles between `0` and `1`.
+This snippet resembles "normal" code, especially with its C-like syntax, but underneath the surface, is is actually describing a circuit itself, where `tick` is really a wire that toggles between `0` and `1`.
 
-Unlike traditional code, which is sequential, HDL code "runs" in parallel, because it describes an entire circuit at once.
+Unlike traditional code, which is sequential, HDL code "runs" in parallel because it describes an entire circuit at once.
 
 ---
 
-Interestingly enough, Verilog (and its younger brother, SystemVerilog) seemed to be the most popular option among both hobbyists as well as industry professionals.
+Interestingly enough, Verilog (and its modern extension, SystemVerilog) seemed to be the most popular option among both hobbyists as well as industry professionals.
 
 As someone who sometimes struggles to choose between different frameworks (especially in web development...), I really appreciated how simple the decision was.
 
-### Resources
+### Learning Verilog
 
 I did have some prior knowledge of Verilog and other HDLs, but that was largely from my previous fascination by FPGAs and the [Analogue Pocket](https://analogue.co). I never actually got around to learning it until now.
 
@@ -95,26 +123,47 @@ Learning Verilog from scratch wasn't actually all that bad. In fact, it only too
 
 There were two main resources I used:
 
-- [**_HDLBits_**: a fantastic collection of circuit design exercises for practicing digital hardware design using Verilog](https://hdlbits.01xz.net/wiki/Main_Page)
-- [**_ChipVerify_**: a great online library of educational content related to RTL design, digital circuits, and HDLs](https://chipverify.com/)
+- [**_HDLBits_**](https://hdlbits.01xz.net/wiki/Main_Page): a collection of circuit design exercises for practicing digital hardware design using Verilog
+- [**_ChipVerify_**](https://chipverify.com/): an online library of educational content related to RTL design, digital circuits, and HDLs
 
 Apart from that, I also looked at Verilog code other people had written and published on GitHub to get a better sense of the practical architecture and design practices.
 
+After all, the best way to learn a programming language is to see how it's actually used in real projects.
+
 ## Pong
 
-Time for the fun part: the actual project idea!
+Now, onto the fun part: the actual project idea!
 
-I chose to make Pong because it is a project that I have created many times on various different platforms: desktop, web, Arduboy, and even [Pocketbyte](https://pocketbyte.co)!
+You probably already saw this coming from the title of this post, but I chose to make Pong because it is a project that I have created many times on various different platforms: desktop, web, Arduboy, and even [Pocketbyte](https://pocketbyte.co)!
 
-<img src="/images/MoonPongGameplay.png"></img>
+<BlogImage src="/images/MoonPongGameplay.png" alt="Moon Pong">
+  [Moon Pong](https://github.com/omrawaley/moon-pong), a Pong clone that I wrote
+  in Lua.
+</BlogImage>
 
-From this experience, I have learned a lot about designing clean architecture, especially in regards to Pong, which has many repeated elements. For example, leveraging tables in Lua for modular logic, or a double-buffering engine on embedded systems.
+From these experiences, I have learned plenty about designing clean architecture, especially in regards to Pong, which has many repeated elements. For example, leveraging tables in Lua for modular logic, or a double-buffering engine on embedded systems.
 
 Rather than designing something completely from scratch for my ASIC, I wanted to implement something I already knew how to do in software and see how the RTL design differences stack up.
+Especially since HDLs are a new paradigm to me, I wanted to see how making a familiar project like Pong changes when you move from software to logic gates.
 
-So, I decided to make Pong!
+## Architecture: How it Works
 
-How hard could it be?
+Here is a block diagram representing the overarching structure of the Verilog code.
+
+<BlogImage
+  src="/images/tt-pong-asic-block-diagram.png"
+  alt="Block diagram of the Verilog code"
+>
+  Verilog module architecture
+</BlogImage>
+
+- `ticker`: generates in-game "ticks" for the game logic, since using plain clock signals would result in super fast (nearly instant) game updates.
+- `paddle`: a general game data container used by both the AI and player objects. The only difference is that the player paddle responds to the chip's input pins.
+- `ball`: a game data container for the ball. It also handles collisions with screen boundaries and paddles (which is why they are inputs to the ball module).
+- `vga_controller`: generates VGA blanking signals and keeps track of the current beam position.
+- `renderer`: takes all of the game data containers and selects the appropriate RGB color for the specific pixel given by the VGA controller (the current beam position).
+
+Note: "game data container" refers to something that stores data like x and y positions, width and height, etc.
 
 ## VGA
 
@@ -122,4 +171,181 @@ In my embedded systems work, when it comes to graphics, I've mostly only worked 
 
 As it turns out, the Tiny Tapeout carrier board has a module port that can accept the [Tiny VGA PMOD](https://github.com/mole99/tiny-vga), which allows the ASIC to transfer live VGA signals.
 
+<BlogImage
+  src="https://github.com/mole99/tiny-vga/raw/main/img/v1.2_pcb1.jpg"
+  alt="Tiny VGA PMOD"
+>
+  [GitHub repo](https://github.com/mole99/tiny-vga)
+</BlogImage>
+
+I was extremely surprised by how easy it is to generate VGA signals and how simple the protocol is.
+
+Essentially, VGA uses a scanline approach similar to the Game Boy and NES PPUs, whereby a "beam" goes through every pixel, row by row.
+At certain blanking periods, such as the end of a row or the end of the last row, you emit either a HSYNC or VSYNC signal, respectively.
+For each position of the beam, you just output a corresponding RGB value. Since VGA is an analog protocol, you then need to convert those
+digital RGB signals into analog values, which is done trivially using a resistor ladder on the Tiny VGA PMOD.
+
+<BlogImage
+  src="https://github.com/mole99/tiny-vga/raw/main/img/demo.gif"
+  alt="Tiny Tapeout VGA example on a monitor"
+>
+  [800x600 SVGA demo](https://github.com/mole99/tiny-vga)
+</BlogImage>
+
+The VGA ladder splits each digital RGB signal into two analogue values (six values in total), meaning that it uses the RGB222 color format.
+
+---
+
+In retrospect, I'm incredibly glad to have had this introduction to AV interfaces through this ASIC project, because now I have a few ideas on feasibly adding proper video-out to [Pocketbyte](https://pocketbyte.co).
+
 ### Procedural Rendering
+
+At first glance, you might be wondering how there is even enough memory to store a 640x480 framebuffer for the display output. After all, there is only space for ~1000 logic gates.
+
+```
+uint16_t fb[640*480]; // ???
+```
+
+Well, the neat part is that there is no framebuffer!
+
+Unlike with SPI or I2C displays, where you usually store a framebuffer (and optionally a backbuffer) and manipulate those pixels before pushing physically, VGA uses a sequential scanline-based rendering approach, meaning that we don't need to store any video data.
+Instead, we can render sprites, images, shapes, and any other kind of graphical data using just the current coordinates of the beam.
+
+This is known as procedural rendering.
+
+Here's a cut-down example from `renderer.v`:
+
+```
+// ...
+// Inside the module
+// ...
+
+    wire is_player = (
+        (h_count >= PLAYER_X && h_count < PLAYER_X + PADDLE_WIDTH) &&
+        (v_count >= player_y && v_count < player_y + PADDLE_HEIGHT)
+    );
+
+    always @(posedge clk) begin
+        if (!video_en) begin
+            // Blanking period
+            r <= 2'b00;
+            g <= 2'b00;
+            b <= 2'b00;
+        end else begin
+            if (is_player) begin
+                r <= 2'b11; g <= 2'b11; b <= 2'b11; // Draw the player paddle
+            end
+        end
+    end
+```
+
+We check to see if the current beam position is within the boundaries of the player's "sprite." If so, we assign white pixels to draw the paddle. If not, we assign black pixels to draw the background.
+
+The great thing about procedural rendering is that you only need to store two 10-bit registers (`h_count` and `v_count`) to keep track of the current beam position. That means we save 230,397.5 bytes since we forego a framebuffer!
+
+## Controls
+
+The gamepad I/O was very trivial. It's almost exactly the same as working with a microcontroller: you just monitor a specific pin and interpret LOW/HIGH and PRESSED/RELEASED.
+
+This design requires a single push button (or momentary switch) to be connected to `ui_in[0]`, such that it connects to LOW when pressed.
+
+Unlike traditional Pong, where you have both an "up" and a "down" button, this variant uses only a single button. The paddle continuously moves down, and if you want it to move up, you press and hold the button.
+
+## GDS Generation
+
+Just like how CPUs cannot directly read code written in programming languages, manufacturers cannot directly build chips using just HDL code.
+
+Similar to how you need a compiler or an interpreter to get a CPU to understand your code, in order to make your design readable by manufacturers, you must run it though an ASIC hardening flow.
+
+Typically, during this process, the code is synthesized using a tool like [Yosys](https://yosyshq.net/yosys/) (generates logic gate cells from HDL), placed and routed inside allocated tile boundaries, and finally verified using Design Rule Checks and Layout-Versus-Schematic checks.
+
+Luckily, Tiny Tapeout offers an automatic hardening flow based on [LibreLane](https://fossi-foundation.org/librelane), which triggers automatically when pushing to the repository.
+
+This design ended up using exactly 926 cells.
+
+<BlogImage
+  src="/images/tt-pong-asic-cells.png"
+  alt="GDS summary for this Pong ASIC"
+>
+  [GDS
+  summary](https://github.com/omrawaley/tt-pong-asic/actions/runs/42657982270)
+</BlogImage>
+
+[Check out this project's GDS in the viewer!](https://omrawaley.github.io/tt-pong-asic) (The embed below is interactable)
+
+<iframe
+  src="https://omrawaley.github.io/tt-pong-asic"
+  width="100%"
+  height="500"
+  title="Pong ASIC GDS render"
+  loading="lazy"
+></iframe>
+
+In addition, [check it out in the Tiny Tapeout Explorer](https://gds-explorer.tinytapeout.com/viewer?file=https://omrawaley.github.io/tt-pong-asic/tinytapeout.oas&pdk=gf180mcuD), where you can actually simulate each clock cycle!
+
+<iframe
+  src="https://gds-explorer.tinytapeout.com/viewer?file=https://omrawaley.github.io/tt-pong-asic/tinytapeout.oas&pdk=gf180mcuD"
+  width="100%"
+  height="500"
+  title="Pong ASIC GDS explorer and simulator"
+  loading="lazy"
+></iframe>
+
+## Live Demo
+
+While working on this design, I've been testing it in the Tiny Tapeout VGA Playground.
+
+That means you can play it in your browser as well!
+
+[Check it out here.](https://vga-playground.com/?repo=https://github.com/omrawaley/tt-pong-asic)
+
+<video width="640" height="360" controls>
+  <source src="/images/tt-pong-asic-demo.webm" type="video/webm"></source>
+  {/* <source src="video.mp4" type="video/mp4"></source> */}
+  Your browser does not support the HTML video tag.
+</video>
+
+## Conclusion & Next Steps
+
+Feel free to check out the [GitHub repository](https://github.com/omrawaley/tt-pong-asic).
+
+### Testing on an FPGA
+
+The next step is testing this design on physical hardware. As I mentioned before, FPGAs are perfect for testing ASIC designs because their internal logic gates can be rewired to produce an almost identical result.
+
+Luckily, Hack Club ASIC is giving out free [Icepi Zeros](https://github.com/cheyao/icepi-zero)!
+
+<BlogImage
+  src="https://github.com/cheyao/icepi-zero/raw/main/gallery/icepi-and-rpi.png"
+  alt="Icepi Zero FPGA board by cheyao"
+>
+  Icepi Zero FPGA board by cheyao
+</BlogImage>
+
+### Getting the Manufactured Chip
+
+Depending on how long it takes me to receive the FPGA and test my Pong design, I may or may not be able to submit this design to the "master" chip since the hard deadline is November 31st, in just two weeks.
+
+If it does end up working out, then I certainly look forward to getting my hands on the manufactured ASIC!
+
+(I'll also be able to run other teens' designs, not just Pong)
+
+### What's Next?
+
+Since this was primarily an educational project and, well, I've _been_ educated, I'm not entirely sure if I will continue to update this ASIC in the future.
+
+That being said, there are a few improvements I have considered:
+
+- Replacing the "tally mark" scoring system with proper numbers
+- Randomizing the AI paddle's movement so it can actually lose
+- Using a second input to toggle between single-player and two-player modes
+
+### Afterword
+
+Overall, I'm incredibly happy with how this project went.
+
+A few weeks ago, I had no idea how to program in Verilog, let alone what an ASIC was.
+
+Now, I've actually designed a production-ready Pong microchip using logic gates!
+
+In the future, expect more FPGA stuff 😉
